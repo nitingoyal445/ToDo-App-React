@@ -3,8 +3,24 @@ import React, { Component } from 'react'
 class TodoList extends Component {
     state = {  }
     render() { 
+        let todos = this.props.todosList;
+        let handleDelete = this.props.handleDelete;
         return ( 
-            <h1>Todo List Component</h1>
+            <ul className = "list-group">
+                {todos.map((todoObject) =>{
+                    return (
+                        <li 
+                        className="list-group-item d-flex justify-content-between"
+                         key = {todoObject.id}>
+                             {todoObject.todo} 
+                         <button 
+                         className="btn btn-danger"
+                         onClick={()=>{handleDelete(todoObject.id)} }>
+                             Delete</button>
+                             </li>
+                    )
+                })}
+            </ul>
          );
     }
 }
